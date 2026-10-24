@@ -1,0 +1,25 @@
+# Esempio di configurazione llama-swap per usare MODELLI VERI al posto del backend finto.
+# llama-swap espone un unico endpoint OpenAI-compatibile (/v1) e avvia il llama-server
+# giusto in base al campo "model" della richiesta. Nei file nodo-*.yaml basta quindi
+# puntare backend.url a http://127.0.0.1:8080/v1 e usare come model i nomi qui sotto.
+#
+# I percorsi dei .gguf devono essere quelli VERIFICATI nel registro locale, es.:
+#   registro/alveare__riassunto-it__0.1.0/files/<modello>.gguf
+#
+# Avvio:  llama-swap --config llama-swap.yaml --listen 127.0.0.1:8080
+models:
+  "riassunto-it":
+    cmd: >
+      llama-server --port ${PORT} -c 8192 -ngl 99
+      --model /percorso/registro/alveare__riassunto-it__0.1.0/files/modello.gguf
+    ttl: 600          # scarica il modello dopo 10 minuti di inattività
+  "traduzione-it-en":
+    cmd: >
+      llama-server --port ${PORT} -c 4096 -ngl 99
+      --model /percorso/registro/alveare__traduzione-it-en__0.1.0/files/modello.gguf
+    ttl: 600
+  "correzione-it":
+    cmd: >
+      llama-server --port ${PORT} -c 4096 -ngl 99
+      --model /percorso/registro/alveare__correzione-it__0.1.0/files/modello.gguf
+    ttl: 600

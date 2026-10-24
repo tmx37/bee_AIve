@@ -1,0 +1,22 @@
+# Nodo B: traduzione e correzione (es. un secondo PC dell'ufficio o un Raspberry Pi 5).
+node_id: nodo-b
+advertise_url: http://127.0.0.1:8102
+listen_host: 127.0.0.1
+listen_port: 8102
+registry: ../demo-run/registro
+trusted_keys: ../demo-run/chiavi-fidate
+require_signed_bundles: true
+clients:
+  - id: orchestratore
+    api_key_sha256: e47025acda44fd005c2287691ede8ff924c51cfb5f0c433509605e8efe8ad484
+tasks:
+  - name: traduzione-it-en
+    description: Traduzione italiano -> inglese
+    bundle: alveare/traduzione-it-en@0.1.0
+    backend: {url: "http://127.0.0.1:8080/v1", model: traduzione-it-en}
+    max_concurrency: 2
+  - name: correzione-it
+    description: Correzione ortografica
+    bundle: alveare/correzione-it@0.1.0
+    backend: {url: "http://127.0.0.1:8080/v1", model: correzione-it}
+    max_concurrency: 2

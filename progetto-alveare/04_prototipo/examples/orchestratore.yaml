@@ -1,0 +1,14 @@
+orchestrator_id: orchestratore-ufficio
+listen_host: 127.0.0.1
+listen_port: 8100
+recipes_dir: recipes
+max_attempts: 2
+nodes:
+  - url: http://127.0.0.1:8101
+    api_key_env: ALVEARE_NODE_KEY      # valore: demo-chiave-orchestratore
+  - url: http://127.0.0.1:8102
+    api_key_env: ALVEARE_NODE_KEY
+clients:
+  - id: postazione-ufficio
+    # sha256 di "demo-chiave-client"
+    api_key_sha256: 034ace6d79e24cb231f6c3d9a79d3f6124ae58b55c0e41c253fa218620fb2496

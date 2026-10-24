@@ -1,0 +1,13 @@
+name: correggi-e-riassumi
+description: Corregge ortografia e punteggiatura, poi riassume il testo corretto (passi in sequenza).
+inputs: [testo]
+steps:
+  - id: corretto
+    task: correzione-it
+    input: "{{ inputs.testo }}"
+  - id: sintesi
+    task: riassunto-it
+    input: "{{ steps.corretto }}"
+outputs:
+  testo_corretto: corretto
+  riassunto: sintesi

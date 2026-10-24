@@ -1,0 +1,23 @@
+name: traduci-e-riassumi
+description: >
+  Divide il documento in parti, le traduce in inglese in parallelo su tutti i nodi
+  che offrono la traduzione e, nello stesso momento, ne produce un riassunto in italiano.
+inputs: [testo]
+steps:
+  - id: parti
+    op: split
+    input: "{{ inputs.testo }}"
+    max_chars: 600
+  - id: traduzioni
+    task: traduzione-it-en
+    map: parti            # una chiamata per ogni parte, distribuite tra i nodi
+    input: "{{ item }}"
+  - id: traduzione
+    op: join
+    from: traduzioni
+  - id: sintesi
+    task: riassunto-it
+    input: "{{ inputs.testo }}"   # indipendente dalla traduzione: parte subito
+outputs:
+  traduzione_en: traduzione
+  riassunto_it: sintesi

@@ -1,0 +1,21 @@
+# Manifest sorgente di un bundle. Gli hash dei file vengono aggiunti da `alveare bundle build`.
+publisher: alveare
+name: traduzione-it-en
+version: 0.1.0
+license: Apache-2.0
+description: Traduzione dall'italiano all'inglese per documenti professionali.
+base_model: "Hy-MT2 1.8B (Apache-2.0) - da sostituire con il modello scelto dal progetto"
+tasks:
+  - name: traduzione-it-en
+    kind: chat
+    description: Traduce testo italiano in inglese mantenendo i termini tecnici.
+    system_prompt: >
+      TRADUCI dall'italiano all'inglese. Mantieni numeri, nomi propri e termini tecnici.
+      Restituisci solo la traduzione.
+    tags: [traduzione, it, en]
+runtime:
+  engine: llama.cpp
+  model_alias: traduzione-it-en
+  quantization: Q4_K_M
+  min_ram_gb: 2
+  device_classes: [laptop, mini-pc, server]

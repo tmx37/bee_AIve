@@ -1,0 +1,3 @@
+{"input": "La consegna avviene entro trenta giorni lavorativi. Le variazioni vanno concordate per iscritto.", "expected": ["trenta giorni"], "metric": "contains"}
+{"input": "Il Fornitore paga una penale dell'uno per cento per ogni settimana di ritardo. Il massimo è il dieci per cento.", "expected": "Il Fornitore paga una penale dell'uno per cento per ogni settimana di ritardo.", "metric": "chrf"}
+{"input": "I componenti sono garantiti per ventiquattro mesi. La garanzia esclude l'usura ordinaria.", "expected": ["ventiquattro mesi"], "metric": "contains"}

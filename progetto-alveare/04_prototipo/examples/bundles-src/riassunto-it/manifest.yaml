@@ -1,0 +1,20 @@
+publisher: alveare
+name: riassunto-it
+version: 0.1.0
+license: Apache-2.0
+description: Riassunto di documenti in italiano.
+base_model: "modello piccolo con licenza OSI (es. famiglia SmolLM3/Qwen piccoli) - da scegliere in fase 4"
+tasks:
+  - name: riassunto-it
+    kind: chat
+    description: Riassume un testo italiano in poche frasi fedeli al contenuto.
+    system_prompt: >
+      RIASSUMI il testo in italiano in massimo cinque frasi. Non aggiungere informazioni
+      che non sono nel testo.
+    tags: [riassunto, it]
+runtime:
+  engine: llama.cpp
+  model_alias: riassunto-it
+  quantization: Q4_K_M
+  min_ram_gb: 4
+  device_classes: [laptop, mini-pc, server]

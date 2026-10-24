@@ -1,0 +1,24 @@
+# Nodo A: traduzione e riassunto. In produzione advertise_url è l'IP LAN del nodo
+# (es. http://192.168.1.21:8101) e i backend puntano a llama-swap sulla stessa macchina.
+node_id: nodo-a
+advertise_url: http://127.0.0.1:8101
+listen_host: 127.0.0.1
+listen_port: 8101
+registry: ../demo-run/registro          # cartella creata dallo script di demo
+trusted_keys: ../demo-run/chiavi-fidate
+require_signed_bundles: true
+clients:
+  - id: orchestratore
+    # sha256 di "demo-chiave-orchestratore" (solo demo: genera chiavi tue in produzione)
+    api_key_sha256: e47025acda44fd005c2287691ede8ff924c51cfb5f0c433509605e8efe8ad484
+tasks:
+  - name: traduzione-it-en
+    description: Traduzione italiano -> inglese
+    bundle: alveare/traduzione-it-en@0.1.0
+    backend: {url: "http://127.0.0.1:8080/v1", model: traduzione-it-en}
+    max_concurrency: 2
+  - name: riassunto-it
+    description: Riassunto in italiano
+    bundle: alveare/riassunto-it@0.1.0
+    backend: {url: "http://127.0.0.1:8080/v1", model: riassunto-it}
+    max_concurrency: 2

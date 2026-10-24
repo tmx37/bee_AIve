@@ -1,0 +1,19 @@
+publisher: alveare
+name: correzione-it
+version: 0.1.0
+license: Apache-2.0
+description: Correzione di ortografia e punteggiatura in italiano.
+tasks:
+  - name: correzione-it
+    kind: chat
+    description: Corregge ortografia e punteggiatura senza cambiare il senso.
+    system_prompt: >
+      CORREGGI ortografia e punteggiatura del testo senza cambiarne il senso.
+      Restituisci solo il testo corretto.
+    tags: [correzione, it]
+runtime:
+  engine: llama.cpp
+  model_alias: correzione-it
+  quantization: Q4_K_M
+  min_ram_gb: 2
+  device_classes: [raspberry-pi-5, laptop, mini-pc]
